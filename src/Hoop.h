@@ -1,9 +1,9 @@
 #pragma once
 #include "Entity.h"
 
-const color baseColor = {30, 30, 0, 255};
-const Uint8 deltaR = 30;
-const Uint8 deltaB = 30;
+const color baseColor = {0, 0, 0, 255};
+const Uint8 deltaR = 36;
+const Uint8 deltaB = 36;
 const int hoopHeight = 20;
 const int hoopWidthMultiplier = 10;
 const int hoopBaseWidth = 20;
@@ -18,11 +18,19 @@ public:
     virtual void onHold(int mouseX, int mouseY, bool mouseOver);
     virtual void onRelease(int mouseX, int mouseY, bool mouseOver);
     virtual void update();
+    void setCorrectX(int x);
+    void setCorrectY(int y);
+    bool isPickedUp();
+    int getSize();
+    bool isDropped();
+    void setDropped(bool isDropped);
+
 private:
     int sz;
     int lastMouseX;
     int lastMouseY;
     bool pickedUp = false;
+    bool dropped = false;
     int correctX;
     int correctY;
 };

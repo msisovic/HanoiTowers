@@ -20,24 +20,27 @@ class Entity {
 public:
     Entity(int xpos, int ypos, int width, int height): xpos(xpos), ypos(ypos), width(width), height(height) {};
     Entity(int xpos, int ypos): xpos(xpos), ypos(ypos) {};
+    Entity() {};
+
     const std::vector<ColorFilledRectangle>& getFilledRectangles() const;
+
     int getXPos() const { return xpos; };
     int getYPos() const { return ypos; };
     int getWidth() const { return width; };
     int getHeight() const { return height; };
 
-    virtual void onClick(int mouseX, int mouseY, bool mouseOver) = 0;
-    virtual void onHold(int mouseX, int mouseY, bool mouseOver) = 0;
-    virtual void onRelease(int mouseX, int mouseY, bool mouseOver) = 0;
-    virtual void update() = 0;
+    virtual void onClick(int mouseX, int mouseY, bool mouseOver);
+    virtual void onHold(int mouseX, int mouseY, bool mouseOver);
+    virtual void onRelease(int mouseX, int mouseY, bool mouseOver);
+    virtual void update();
 
 protected:
     std::vector<ColorFilledRectangle> filledRectangles;
     void updatePos(int x, int y);
     void deltaPos(int dx, int dy);
 
-    int xpos;
-    int ypos;
-    int width;
-    int height;
+    int xpos = -1;
+    int ypos = -1;
+    int width = 0;
+    int height = 0;
 };

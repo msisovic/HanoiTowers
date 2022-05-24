@@ -35,6 +35,9 @@ void Hoop::onHold(int mouseX, int mouseY, bool mouseOver) {
 }
 
 void Hoop::onRelease(int mouseX, int mouseY, bool mouseOver) {
+    if(pickedUp){
+        setDropped(true);
+    }
     pickedUp = false;
 }
 
@@ -52,4 +55,28 @@ void Hoop::update() {
 
         deltaPos(dx, dy);
     }
+}
+
+void Hoop::setCorrectX(int x) {
+    correctX = x;
+}
+
+void Hoop::setCorrectY(int y) {
+    correctY = y;
+}
+
+bool Hoop::isPickedUp() {
+    return pickedUp;
+}
+
+int Hoop::getSize() {
+    return sz;
+}
+
+bool Hoop::isDropped() {
+    return dropped;
+}
+
+void Hoop::setDropped(bool isDropped) {
+    dropped = isDropped;
 }

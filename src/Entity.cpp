@@ -35,3 +35,19 @@ void ColorFilledRectangle::updatePos(int x, int y) {
 void Entity::deltaPos(int dx, int dy) {
     updatePos(xpos + dx, ypos + dy);
 }
+
+void Entity::onClick(int mouseX, int mouseY, bool mouseOver) {
+    
+}
+
+void Entity::onHold(int mouseX, int mouseY, bool mouseOver) {
+    
+}
+
+void Entity::onRelease(int mouseX, int mouseY, bool mouseOver) {
+    
+}
+
+void Entity::update() {
+    
+}
