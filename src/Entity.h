@@ -7,6 +7,7 @@
 class Message {
 public:
     Message(color col, int x, int y, int w, int h);
+    Message(color col, const std::string& text, int x, int y, int w, int h);
     void updateText(const std::string& newText);
     const std::string& getText() const;
     color getCol() const;

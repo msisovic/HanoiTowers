@@ -11,6 +11,18 @@ TowerManagerButton::TowerManagerButton(int xpos, int ypos, TowerManager* towMan)
     filledRectangles.push_back(ColorFilledRectangle(tmButtonColor, xpos, ypos, tmButtonWidth, tmButtonHeight));
 }
 
-void TowerManagerButton::action(){
+void TMBRestart::action(){
     towerManager->restartGame();
+}
+
+void TMBIncrease::action(){
+    towerManager->increaseHoops();
+}
+
+void TMBDecrease::action(){
+    towerManager->decreaseHoops();
+}
+
+void TMBSolve::action(){
+    towerManager->solve();
 }

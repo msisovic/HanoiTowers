@@ -3,9 +3,11 @@
 #include "Hoop.h"
 #include "EntityManager.h"
 
-const int defaultHoopNumber = 8;
+const int defaultHoopNumber = 4;
 const int minHoops = 1;
 const int maxHoops = 8;
+
+const int skipFramesForSolve = 50;
 
 class TowerManager: public Entity {
 public:
@@ -13,9 +15,18 @@ public:
     virtual void update();
     int getStepCount() const;
     void restartGame();
+    void addButton(Entity* button);
+    void increaseHoops();
+    void decreaseHoops();
+    void solve();
 
 private:
+    int skipFrameCounter;
+    bool solveMode = false;
+
     EntityManager* entityManager;
+
+    void recursiveSolve(int n, int fromPole, int toPole, int helpPole);
 
     void initPoles();
     void initHoops(int number);
@@ -30,6 +41,9 @@ private:
 
     std::vector<Pole*> poles;
     std::vector<Hoop*> hoops;
+    std::vector<Entity*> buttons;
+    std::vector<int> fromPoleVector;
+    std::vector<int> toPoleVector;
     Hoop* caughtHoop = nullptr;
 
     int numberOfHoops;

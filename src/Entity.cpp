@@ -59,6 +59,9 @@ void Entity::update() {
 Message::Message(color col, int x, int y, int w, int h): col(col) {
     rect.x = x, rect.y = y, rect.w = w, rect.h = h;
 }
+Message::Message(color col, const std::string& text, int x, int y, int w, int h): col(col), text(text) {
+    rect.x = x, rect.y = y, rect.w = w, rect.h = h;
+}
 
 void Message::updateText(const std::string& newText) {
     text = newText;

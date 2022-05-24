@@ -11,7 +11,7 @@ class Pole: public Entity {
 public:
     Pole(int xpos, int ypos);
     
-    void popHoop();
+    Hoop* popHoop();
     bool pushHoop(Hoop* hoop);
     bool isEmpty();
 

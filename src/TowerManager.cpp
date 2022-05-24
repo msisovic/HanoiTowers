@@ -1,5 +1,42 @@
 #include "TowerManager.h"
 #include <iostream>
+#include <algorithm>
+
+void TowerManager::solve(){
+    restartGame();
+    fromPoleVector.clear();
+    toPoleVector.clear();
+    solveMode = true;
+    recursiveSolve(numberOfHoops, 0, 1, 2);
+    skipFrameCounter = 0;
+}
+
+void TowerManager::recursiveSolve(int n, int fromPole, int toPole, int helpPole){
+    if(n == 0) {
+        return;
+    }
+    recursiveSolve(n-1, fromPole, helpPole, toPole);
+    fromPoleVector.push_back(fromPole);
+    toPoleVector.push_back(toPole);
+    recursiveSolve(n-1, helpPole, toPole, fromPole);
+}
+
+void TowerManager::increaseHoops(){
+    numberOfHoops++;
+    numberOfHoops = std::min(numberOfHoops, maxHoops);
+    restartGame();
+}
+
+void TowerManager::decreaseHoops(){
+    numberOfHoops--;
+    numberOfHoops = std::max(numberOfHoops, minHoops);
+    restartGame();
+}
+
+void TowerManager::addButton(Entity* button){
+    buttons.push_back(button);
+    entityManager->addEntity(button);
+}
 
 void TowerManager::restartGame(){
     clearGame();
@@ -8,6 +45,7 @@ void TowerManager::restartGame(){
 }
 
 void TowerManager::clearGame(){
+    solveMode = false;
     entityManager->clearEntityList();
     stepCount = 0;
     for(auto pole : poles){
@@ -38,6 +76,9 @@ void TowerManager::addAllEntities(){
     for(auto hoop : hoops){
         entityManager->addEntity(hoop);
     }
+    for(auto button: buttons){
+        entityManager->addEntity(button);
+    }
 }
 
 void TowerManager::initHoops(int number) {
@@ -61,6 +102,23 @@ TowerManager::TowerManager(EntityManager* entMan){
 }
 
 void TowerManager::update() {
+    if(solveMode){
+        if(skipFrameCounter<skipFramesForSolve){
+            skipFrameCounter++;
+            return;
+        }
+        skipFrameCounter = 0;
+        if(stepCount<fromPoleVector.size()){
+            int fromPole = fromPoleVector[stepCount], toPole = toPoleVector[stepCount];
+            Hoop* curHoop = poles[fromPole]->popHoop();
+            poles[toPole]->pushHoop(curHoop);
+            stepCount++;
+            return;
+        }
+        else{
+            solveMode = false;
+        }
+    }
     catchHoop();
     if(caughtHoop != nullptr) {
         if(tryToStoreHoop()){

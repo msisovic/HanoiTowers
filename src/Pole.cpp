@@ -55,12 +55,14 @@ bool Pole::isSourcing() {
     return sourcing;
 }
 
-void Pole::popHoop() {
+Hoop* Pole::popHoop() {
     if(hoops.empty()) {
-        return;
+        return nullptr;
     }
     stackHeight -= hoops.back()->getHeight();
+    Hoop* poppedHoop = hoops.back();
     hoops.pop_back();
+    return poppedHoop;
 }
 
 void Pole::setSourcing(bool isSourcing) {
