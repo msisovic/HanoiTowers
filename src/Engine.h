@@ -2,7 +2,6 @@
 #include "WindowRenderer.h"
 #include "Utils.h"
 #include "Entity.h"
-#include "ClickableObject.h"
 
 const int tickDelay = 5;
 

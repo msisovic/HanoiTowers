@@ -1,6 +1,5 @@
 #pragma once
 #include "Entity.h"
-#include "ClickableObject.h"
 
 const color baseColor = {30, 30, 0, 255};
 const Uint8 deltaR = 30;
