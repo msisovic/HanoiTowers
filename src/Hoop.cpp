@@ -2,14 +2,19 @@
 #include <algorithm>
 #include <iostream>
 
-Hoop::Hoop(int xpos, int ypos, int size): DrawableObject(xpos, ypos), sz(size) {
+Hoop::Hoop(int xpos, int ypos, int size): Entity(xpos, ypos), sz(size) {
     sz = std::min(sz, hoopMaxSize);
     sz = std::max(sz, hoopMinSize);
     correctX = xpos;
     correctY = ypos;
     width = hoopBaseWidth + sz * hoopWidthMultiplier;
     height = hoopHeight;
-    filledRectangles.push_back(ColorFilledRectangle(color1, xpos, ypos, width, hoopHeight));
+
+    int deltaRWeight = sz - hoopMinSize;
+    int deltaBWeight = hoopMaxSize - sz;
+    color hoopColor = {(Uint8)(baseColor.r + deltaR*deltaRWeight), baseColor.g, (Uint8)(baseColor.b + deltaB*deltaBWeight), baseColor.a};
+
+    filledRectangles.push_back(ColorFilledRectangle(hoopColor, xpos, ypos, width, hoopHeight));
 }
 
 void Hoop::onClick(int mouseX, int mouseY, bool mouseOver) {

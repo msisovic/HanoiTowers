@@ -20,7 +20,7 @@ void WindowRenderer:: render(){
     SDL_RenderPresent(renderer);
 }
 
-void WindowRenderer::renderObject(const DrawableObject& object){
+void WindowRenderer::renderObject(const Entity& object){
     const std::vector<ColorFilledRectangle>& filledRects = object.getFilledRectangles();
     for(auto& filledRect : filledRects) {
         const color& col = filledRect.getCol();

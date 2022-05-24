@@ -16,10 +16,10 @@ private:
     SDL_Rect rect;
 };
 
-class DrawableObject {
+class Entity {
 public:
-    DrawableObject(int xpos, int ypos, int width, int height): xpos(xpos), ypos(ypos), width(width), height(height) {};
-    DrawableObject(int xpos, int ypos): xpos(xpos), ypos(ypos) {};
+    Entity(int xpos, int ypos, int width, int height): xpos(xpos), ypos(ypos), width(width), height(height) {};
+    Entity(int xpos, int ypos): xpos(xpos), ypos(ypos) {};
     const std::vector<ColorFilledRectangle>& getFilledRectangles() const;
     int getXPos() const { return xpos; };
     int getYPos() const { return ypos; };

@@ -21,7 +21,7 @@ void Engine::run() {
 
 void Engine::render(){
     clearFrame();
-    for(auto& object : renderingQueue){
+    for(auto& object : entities){
         windowRenderer->renderObject(*object);
     }
     windowRenderer->render();
@@ -35,8 +35,8 @@ void Engine::setBackgroundColor(color c) {
     backgroundColor = c;
 }
 
-void Engine::addToRenderingQueue(DrawableObject* obj) {
-    renderingQueue.push_back(obj);
+void Engine::addEntity(Entity* obj) {
+    entities.push_back(obj);
 }
 
 void Engine::handleInput() {
@@ -66,7 +66,7 @@ void Engine::handleInput() {
 }
 
 void Engine::handleClicks() {
-    for(auto& object : renderingQueue) {
+    for(auto& object : entities) {
         int xmin = object->getXPos();
         int xmax = xmin + object->getWidth();
         int ymin = object->getYPos();
@@ -89,7 +89,7 @@ void Engine::handleClicks() {
 }
 
 void Engine::handleUpdates(){
-    for(auto& object : renderingQueue) {
+    for(auto& object : entities) {
         object->update();
     }
 }

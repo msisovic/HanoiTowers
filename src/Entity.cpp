@@ -1,4 +1,4 @@
-#include "DrawableObject.h"
+#include "Entity.h"
 #include <iostream>
 
 const color& ColorFilledRectangle::getCol() const {
@@ -9,7 +9,7 @@ const SDL_Rect& ColorFilledRectangle::getRect() const {
     return rect;
 }
 
-const std::vector<ColorFilledRectangle>& DrawableObject::getFilledRectangles() const {
+const std::vector<ColorFilledRectangle>& Entity::getFilledRectangles() const {
     return filledRectangles;
 }
 
@@ -21,7 +21,7 @@ ColorFilledRectangle::ColorFilledRectangle(color col, SDL_Rect rect): col(col), 
 
 }
 
-void DrawableObject::updatePos(int x, int y) {
+void Entity::updatePos(int x, int y) {
     xpos = x, ypos = y;
     for(auto& filledRect : filledRectangles) {
         filledRect.updatePos(x,y);
@@ -32,6 +32,6 @@ void ColorFilledRectangle::updatePos(int x, int y) {
     this->rect.x = x, this->rect.y = y;
 }
 
-void DrawableObject::deltaPos(int dx, int dy) {
+void Entity::deltaPos(int dx, int dy) {
     updatePos(xpos + dx, ypos + dy);
 }
