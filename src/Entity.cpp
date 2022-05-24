@@ -1,6 +1,10 @@
 #include "Entity.h"
 #include <iostream>
 
+Entity::~Entity(){
+    
+}
+
 const color& ColorFilledRectangle::getCol() const {
     return col;
 }

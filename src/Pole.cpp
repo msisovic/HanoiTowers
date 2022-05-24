@@ -1,6 +1,10 @@
 #include "Pole.h"
 #include <iostream>
 
+bool Pole::isEmpty(){
+    return hoops.empty();
+}
+
 Pole::Pole(int xpos, int ypos): Entity(xpos, ypos, poleWidth, poleHeight) {
     SDL_Rect rect;
 

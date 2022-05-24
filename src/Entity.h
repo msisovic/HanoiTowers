@@ -36,6 +36,7 @@ public:
     Entity(int xpos, int ypos, int width, int height): xpos(xpos), ypos(ypos), width(width), height(height) {};
     Entity(int xpos, int ypos): xpos(xpos), ypos(ypos) {};
     Entity() {};
+    virtual ~Entity();
 
     const std::vector<ColorFilledRectangle>& getFilledRectangles() const;
     const std::vector<Message>& getMessages() const;

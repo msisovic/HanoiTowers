@@ -1,24 +1,39 @@
 #pragma once
 #include "Pole.h"
 #include "Hoop.h"
+#include "EntityManager.h"
+
+const int defaultHoopNumber = 8;
+const int minHoops = 1;
+const int maxHoops = 8;
 
 class TowerManager: public Entity {
 public:
+    TowerManager(EntityManager* entMan);
     virtual void update();
     int getStepCount() const;
-
-//private:
-    std::vector<Pole*> poles;
-    std::vector<Hoop*> hoops;
-    Hoop* caughtHoop = nullptr;
+    void restartGame();
 
 private:
+    EntityManager* entityManager;
+
+    void initPoles();
+    void initHoops(int number);
+    void addAllEntities();
+
     bool tryToStoreHoop();
     void catchHoop();
     void reset();
     void popSource();
     void stopSourcing();
     int stepCount = 0;
+
+    std::vector<Pole*> poles;
+    std::vector<Hoop*> hoops;
+    Hoop* caughtHoop = nullptr;
+
+    int numberOfHoops;
+    void clearGame();
 };
 
 const int tmWidth = 200;

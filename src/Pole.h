@@ -13,6 +13,7 @@ public:
     
     void popHoop();
     bool pushHoop(Hoop* hoop);
+    bool isEmpty();
 
     virtual void onHold(int mouseX, int mouseY, bool mouseOver);
     virtual void onRelease(int mouseX, int mouseY, bool mouseOver);

@@ -33,7 +33,6 @@ void WindowRenderer::renderObject(const Entity& object){
 
     const std::vector<Message>& messages = object.getMessages();
     for(auto& message : messages) {
-        std::cout<<"ok "<<message.getText()<<"\n"<<(font==nullptr)<<"\n";
         color col = message.getCol();
         SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, message.getText().c_str(), {col.r, col.g, col.b});
         SDL_Texture* messageTexture = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
