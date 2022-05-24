@@ -4,6 +4,8 @@
 #include "DrawableObject.h"
 #include "ClickableObject.h"
 
+const int tickDelay = 5;
+
 class Engine {
 public:
     Engine(const char *name, int width, int height);
@@ -18,6 +20,7 @@ private:
     WindowRenderer* windowRenderer;
     bool running;
     std::vector<DrawableObject*> renderingQueue;
+
     bool mouseDown = false;
     bool mousePressed = false;
     bool mouseReleased = false;
@@ -26,6 +29,7 @@ private:
 
     void handleInput();
     void handleClicks();
+    void handleUpdates();
 
     void clearFrame();
     void render();

@@ -29,6 +29,7 @@ public:
     virtual void onClick(int mouseX, int mouseY, bool mouseOver) = 0;
     virtual void onHold(int mouseX, int mouseY, bool mouseOver) = 0;
     virtual void onRelease(int mouseX, int mouseY, bool mouseOver) = 0;
+    virtual void update() = 0;
 
 protected:
     std::vector<ColorFilledRectangle> filledRectangles;

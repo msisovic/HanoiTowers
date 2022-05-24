@@ -11,9 +11,10 @@ Engine::~Engine(){
 
 void Engine::run() {
     while(running) {
-        SDL_Delay(5);
+        SDL_Delay(tickDelay);
         handleInput();
         handleClicks();
+        handleUpdates();
         render();
     }
 }
@@ -65,7 +66,7 @@ void Engine::handleInput() {
 }
 
 void Engine::handleClicks() {
-    for(auto& object : renderingQueue){
+    for(auto& object : renderingQueue) {
         int xmin = object->getXPos();
         int xmax = xmin + object->getWidth();
         int ymin = object->getYPos();
@@ -84,5 +85,11 @@ void Engine::handleClicks() {
         if(mouseReleased) {
             object->onRelease(mouseX, mouseY, mouseOver);
         }
+    }
+}
+
+void Engine::handleUpdates(){
+    for(auto& object : renderingQueue) {
+        object->update();
     }
 }
