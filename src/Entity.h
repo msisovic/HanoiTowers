@@ -2,6 +2,21 @@
 #include "Utils.h"
 #include <SDL2/SDL.h>
 #include <vector>
+#include <string>
+
+class Message {
+public:
+    Message(color col, int x, int y, int w, int h);
+    void updateText(const std::string& newText);
+    const std::string& getText() const;
+    color getCol() const;
+    SDL_Rect getRect() const;
+
+private:
+    std::string text;
+    color col;
+    SDL_Rect rect;
+};
 
 class ColorFilledRectangle {
 public:
@@ -23,6 +38,7 @@ public:
     Entity() {};
 
     const std::vector<ColorFilledRectangle>& getFilledRectangles() const;
+    const std::vector<Message>& getMessages() const;
 
     int getXPos() const { return xpos; };
     int getYPos() const { return ypos; };
@@ -36,6 +52,7 @@ public:
 
 protected:
     std::vector<ColorFilledRectangle> filledRectangles;
+    std::vector<Message> messages;
     void updatePos(int x, int y);
     void deltaPos(int dx, int dy);
 

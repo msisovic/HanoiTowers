@@ -1,7 +1,8 @@
 #include "Engine.h"
 #include <iostream>
 
-Engine::Engine(const char *name, int width, int height): running(true) {
+Engine::Engine(const char *name, int width, int height, EntityManager* entMan): running(true) {
+    entityManager = entMan;
     windowRenderer = new WindowRenderer(name, width, height);
 };
 
@@ -21,6 +22,7 @@ void Engine::run() {
 
 void Engine::render(){
     clearFrame();
+    const std::vector<Entity*>& entities = entityManager->getEntityList();
     for(auto& object : entities){
         windowRenderer->renderObject(*object);
     }
@@ -33,10 +35,6 @@ void Engine::clearFrame() {
 
 void Engine::setBackgroundColor(color c) {
     backgroundColor = c;
-}
-
-void Engine::addEntity(Entity* obj) {
-    entities.push_back(obj);
 }
 
 void Engine::handleInput() {
@@ -66,6 +64,7 @@ void Engine::handleInput() {
 }
 
 void Engine::handleClicks() {
+    const std::vector<Entity*>& entities = entityManager->getEntityList();
     for(auto& object : entities) {
         int xmin = object->getXPos();
         int xmax = xmin + object->getWidth();
@@ -89,6 +88,7 @@ void Engine::handleClicks() {
 }
 
 void Engine::handleUpdates(){
+    const std::vector<Entity*>& entities = entityManager->getEntityList();
     for(auto& object : entities) {
         object->update();
     }

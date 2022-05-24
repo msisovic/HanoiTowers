@@ -3,6 +3,9 @@
 #include <SDL2/SDL.h>
 #include "Utils.h"
 #include "Entity.h"
+#include <SDL2/SDL_TTF.h>
+
+const int fontSize = 60;
 
 class WindowRenderer {
 public:
@@ -16,4 +19,5 @@ public:
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
+    TTF_Font* font;
 };

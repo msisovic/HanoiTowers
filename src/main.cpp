@@ -7,6 +7,7 @@
 
 void init() {
     SDL_Init(SDL_INIT_EVERYTHING);
+    TTF_Init();
 }
 
 const char* name = "Towers of Hanoi";
@@ -17,17 +18,22 @@ color backgroundColor = {255, 255, 255, 255};
 int main(int argv, char** args) {
     init();
 
-    Engine engine(name, windowWidth, windowHeight);
+    EntityManager entityManager;
+
+    Engine engine(name, windowWidth, windowHeight, &entityManager);
 
     TowerManager towerManager;
-    engine.addEntity(&towerManager);
+    entityManager.addEntity(&towerManager);
+
+    TowerManagerDisplay tmDisplay(windowWidth/2, 350, &towerManager);
+    entityManager.addEntity(&tmDisplay);
 
     Pole pole1(50, 100);
     Pole pole2(250, 100);
     Pole pole3(450, 100);
-    engine.addEntity(&pole1);
-    engine.addEntity(&pole2);
-    engine.addEntity(&pole3);
+    entityManager.addEntity(&pole1);
+    entityManager.addEntity(&pole2);
+    entityManager.addEntity(&pole3);
     towerManager.poles.push_back(&pole1);
     towerManager.poles.push_back(&pole2);
     towerManager.poles.push_back(&pole3);
@@ -40,14 +46,14 @@ int main(int argv, char** args) {
     Hoop hoop6(100, 200, 6);
     Hoop hoop7(100, 220, 7);
     Hoop hoop8(100, 240, 8);
-    engine.addEntity(&hoop1);
-    engine.addEntity(&hoop2);
-    engine.addEntity(&hoop3);
-    engine.addEntity(&hoop4);
-    engine.addEntity(&hoop5);
-    engine.addEntity(&hoop6);
-    engine.addEntity(&hoop7);
-    engine.addEntity(&hoop8);
+    entityManager.addEntity(&hoop1);
+    entityManager.addEntity(&hoop2);
+    entityManager.addEntity(&hoop3);
+    entityManager.addEntity(&hoop4);
+    entityManager.addEntity(&hoop5);
+    entityManager.addEntity(&hoop6);
+    entityManager.addEntity(&hoop7);
+    entityManager.addEntity(&hoop8);
     towerManager.hoops.push_back(&hoop1);
     towerManager.hoops.push_back(&hoop2);
     towerManager.hoops.push_back(&hoop3);

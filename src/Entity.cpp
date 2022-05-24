@@ -51,3 +51,27 @@ void Entity::onRelease(int mouseX, int mouseY, bool mouseOver) {
 void Entity::update() {
     
 }
+
+Message::Message(color col, int x, int y, int w, int h): col(col) {
+    rect.x = x, rect.y = y, rect.w = w, rect.h = h;
+}
+
+void Message::updateText(const std::string& newText) {
+    text = newText;
+}
+
+const std::vector<Message>& Entity::getMessages() const {
+    return messages;
+}
+
+const std::string& Message::getText() const {
+    return text;
+}
+
+color Message::getCol() const {
+    return col;
+}
+
+SDL_Rect Message::getRect() const {
+    return rect;
+}

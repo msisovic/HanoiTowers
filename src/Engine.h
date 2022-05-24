@@ -2,23 +2,22 @@
 #include "WindowRenderer.h"
 #include "Utils.h"
 #include "Entity.h"
+#include "EntityManager.h"
 
 const int tickDelay = 5;
 
 class Engine {
 public:
-    Engine(const char *name, int width, int height);
+    Engine(const char *name, int width, int height, EntityManager* entityManager);
     ~Engine();
     void run();
     void setBackgroundColor(color c);
-
-    void addEntity(Entity* obj);
 
 private:
     color backgroundColor;
     WindowRenderer* windowRenderer;
     bool running;
-    std::vector<Entity*> entities;
+    EntityManager* entityManager;
 
     bool mouseDown = false;
     bool mousePressed = false;

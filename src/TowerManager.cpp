@@ -5,6 +5,7 @@ void TowerManager::update() {
     catchHoop();
     if(caughtHoop != nullptr) {
         if(tryToStoreHoop()){
+            stepCount++;
             popSource();
         }
         stopSourcing();
@@ -54,3 +55,18 @@ void TowerManager::stopSourcing() {
         pole->setSourcing(false);
     }
 }
+
+TowerManagerDisplay::TowerManagerDisplay(int xpos, int ypos, TowerManager* towMan): Entity(xpos, ypos, tmWidth, tmHeight) {
+    this->xpos -= tmWidth/2;
+    xpos -= tmWidth/2;
+    towerManager = towMan;
+    messages.push_back(Message(tmColor, xpos, ypos, tmWidth, tmHeight));
+}
+
+void TowerManagerDisplay::update() {
+    messages[0].updateText(tmBaseMessage + std::to_string(towerManager->getStepCount()));
+}
+
+int TowerManager::getStepCount() const {
+    return stepCount;
+};
