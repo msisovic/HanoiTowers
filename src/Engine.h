@@ -1,6 +1,7 @@
 #pragma once
 #include "WindowRenderer.h"
 #include "Utils.h"
+#include "DrawableObject.h"
 
 class Engine {
 public:
@@ -9,10 +10,13 @@ public:
     void run();
     void setBackgroundColor(color c);
 
+    void addToRenderingQueue(DrawableObject obj);
+
 private:
     color backgroundColor;
     WindowRenderer* windowRenderer;
     bool running;
+    std::vector<DrawableObject> renderingQueue;
 
     void clearFrame();
     void render();

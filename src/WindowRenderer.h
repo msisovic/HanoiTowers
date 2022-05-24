@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include "Utils.h"
+#include "DrawableObject.h"
 
 class WindowRenderer {
 public:
@@ -9,6 +10,7 @@ public:
     ~WindowRenderer();
 
     void clearWithColor(color c);
+    void renderObject(const DrawableObject& object);
     void render();
 
 private:

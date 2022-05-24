@@ -18,3 +18,13 @@ void WindowRenderer::clearWithColor(color c) {
 void WindowRenderer:: render(){
     SDL_RenderPresent(renderer);
 }
+
+void WindowRenderer::renderObject(const DrawableObject& object){
+    const std::vector<ColorFilledRectangle>& filledRects = object.getFilledRectangles();
+    for(auto filledRect : filledRects) {
+        const color& col = filledRect.getCol();
+        const SDL_Rect& rect = filledRect.getRect();
+        SDL_SetRenderDrawColor(renderer, col.r, col.g, col.b, col.a);
+        SDL_RenderFillRect(renderer, &rect);
+    }
+}

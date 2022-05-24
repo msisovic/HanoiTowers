@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include "Engine.h"
+#include "Hoop.h"
 
 void init() {
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -15,6 +16,8 @@ int main(int argv, char** args) {
     init();
 
     Engine engine(name, windowWidth, windowHeight);
+    engine.addToRenderingQueue(Hoop(100, 100, 2));
+
     engine.setBackgroundColor(backgroundColor);
     engine.run();
 

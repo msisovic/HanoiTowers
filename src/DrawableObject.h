@@ -3,12 +3,22 @@
 #include <SDL2/SDL.h>
 #include <vector>
 
-struct coloredRectangle {
+class ColorFilledRectangle {
+public:
+    ColorFilledRectangle(color col, SDL_Rect rect);
+    ColorFilledRectangle(color col, int x, int y, int w, int h);
+    const color& getCol();
+    const SDL_Rect& getRect();
+
+private:
     color col;
     SDL_Rect rect;
 };
 
 class DrawableObject {
 public:
-    virtual std::vector<coloredRectangle> getRectangles() = 0;
+    const std::vector<ColorFilledRectangle>& getFilledRectangles() const;
+
+protected:
+    std::vector<ColorFilledRectangle> filledRectangles;
 };

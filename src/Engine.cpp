@@ -17,6 +17,9 @@ void Engine::run() {
 
 void Engine::render(){
     clearFrame();
+    for(auto object : renderingQueue){
+        windowRenderer->renderObject(object);
+    }
     windowRenderer->render();
 }
 
@@ -26,4 +29,8 @@ void Engine::clearFrame() {
 
 void Engine::setBackgroundColor(color c) {
     backgroundColor = c;
+}
+
+void Engine::addToRenderingQueue(DrawableObject obj){
+    renderingQueue.push_back(obj);
 }
