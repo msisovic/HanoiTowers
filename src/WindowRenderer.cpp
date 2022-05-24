@@ -1,4 +1,5 @@
 #include "WindowRenderer.h"
+#include <iostream>
 
 WindowRenderer::~WindowRenderer(){
     SDL_DestroyWindow(window);
@@ -21,7 +22,7 @@ void WindowRenderer:: render(){
 
 void WindowRenderer::renderObject(const DrawableObject& object){
     const std::vector<ColorFilledRectangle>& filledRects = object.getFilledRectangles();
-    for(auto filledRect : filledRects) {
+    for(auto& filledRect : filledRects) {
         const color& col = filledRect.getCol();
         const SDL_Rect& rect = filledRect.getRect();
         SDL_SetRenderDrawColor(renderer, col.r, col.g, col.b, col.a);

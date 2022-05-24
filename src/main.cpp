@@ -16,7 +16,10 @@ int main(int argv, char** args) {
     init();
 
     Engine engine(name, windowWidth, windowHeight);
-    engine.addToRenderingQueue(Hoop(100, 100, 2));
+    Hoop hoop1(100, 100, 2);
+    Hoop hoop2(100, 150, 3);
+    engine.addToRenderingQueue(&hoop1);
+    engine.addToRenderingQueue(&hoop2);
 
     engine.setBackgroundColor(backgroundColor);
     engine.run();

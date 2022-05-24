@@ -1,10 +1,11 @@
 #include "DrawableObject.h"
+#include <iostream>
 
-const color& ColorFilledRectangle::getCol() {
+const color& ColorFilledRectangle::getCol() const {
     return col;
 }
     
-const SDL_Rect& ColorFilledRectangle::getRect() {
+const SDL_Rect& ColorFilledRectangle::getRect() const {
     return rect;
 }
 
@@ -18,4 +19,19 @@ ColorFilledRectangle::ColorFilledRectangle(color col, int x, int y, int w, int h
 
 ColorFilledRectangle::ColorFilledRectangle(color col, SDL_Rect rect): col(col), rect(rect) {
 
+}
+
+void DrawableObject::updatePos(int x, int y) {
+    xpos = x, ypos = y;
+    for(auto& filledRect : filledRectangles) {
+        filledRect.updatePos(x,y);
+    }
+}
+
+void ColorFilledRectangle::updatePos(int x, int y) {
+    this->rect.x = x, this->rect.y = y;
+}
+
+void DrawableObject::deltaPos(int dx, int dy) {
+    updatePos(xpos + dx, ypos + dy);
 }

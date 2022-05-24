@@ -2,6 +2,7 @@
 #include "WindowRenderer.h"
 #include "Utils.h"
 #include "DrawableObject.h"
+#include "ClickableObject.h"
 
 class Engine {
 public:
@@ -10,13 +11,21 @@ public:
     void run();
     void setBackgroundColor(color c);
 
-    void addToRenderingQueue(DrawableObject obj);
+    void addToRenderingQueue(DrawableObject* obj);
 
 private:
     color backgroundColor;
     WindowRenderer* windowRenderer;
     bool running;
-    std::vector<DrawableObject> renderingQueue;
+    std::vector<DrawableObject*> renderingQueue;
+    bool mouseDown = false;
+    bool mousePressed = false;
+    bool mouseReleased = false;
+    int mouseX;
+    int mouseY;
+
+    void handleInput();
+    void handleClicks();
 
     void clearFrame();
     void render();
