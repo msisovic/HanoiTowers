@@ -2,6 +2,10 @@
 #include <algorithm>
 #include <iostream>
 
+void Hoop::setCanBePickedUp(bool canBePU) {
+    canBePickedUp = canBePU;
+}
+
 Hoop::Hoop(int xpos, int ypos, int size): Entity(xpos, ypos), sz(size) {
     sz = std::min(sz, hoopMaxSize);
     sz = std::max(sz, hoopMinSize);
@@ -18,7 +22,7 @@ Hoop::Hoop(int xpos, int ypos, int size): Entity(xpos, ypos), sz(size) {
 }
 
 void Hoop::onClick(int mouseX, int mouseY, bool mouseOver) {
-    if(!mouseOver) {
+    if(!mouseOver || !canBePickedUp) {
         return;
     }
     lastMouseX = mouseX, lastMouseY = mouseY;

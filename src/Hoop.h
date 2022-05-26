@@ -24,6 +24,7 @@ public:
     int getSize();
     bool isDropped();
     void setDropped(bool isDropped);
+    void setCanBePickedUp(bool canBePU);
 
 private:
     int sz;
@@ -33,4 +34,6 @@ private:
     bool dropped = false;
     int correctX;
     int correctY;
+
+    bool canBePickedUp = false;
 };

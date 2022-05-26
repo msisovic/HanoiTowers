@@ -28,6 +28,10 @@ bool Pole::pushHoop(Hoop* hoop) {
     if(!hoops.empty() && hoops.back()->getSize()<hoop->getSize()){
         return false;
     }
+    if(!hoops.empty()) {
+        hoops.back()->setCanBePickedUp(false);
+    }
+    hoop->setCanBePickedUp(true);
     hoops.push_back(hoop);
     stackHeight += hoop->getHeight();
     int hWidth = hoop->getWidth();
@@ -62,6 +66,11 @@ Hoop* Pole::popHoop() {
     stackHeight -= hoops.back()->getHeight();
     Hoop* poppedHoop = hoops.back();
     hoops.pop_back();
+
+    if(!hoops.empty()){
+        hoops.back()->setCanBePickedUp(true);
+    }
+
     return poppedHoop;
 }
 
